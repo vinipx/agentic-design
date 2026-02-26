@@ -10,53 +10,40 @@ sidebar_position: 2
 
 ```mermaid
 flowchart TD
-    A[User Terminal] -->|Directive| B(Gemini CLI)
-    B --> C[Research: grep/glob]
-    C --> D[Strategy: Formulate Plan]
-    D --> E[Execution: edit files/run commands]
-    E --> F{Validate: run tests}
-    F -->|Fail| C
-    F -->|Pass| G[Done]
+    A[User Terminal] -->|Directive / Inquiry| B(Gemini CLI)
+    C[GEMINI.md / Context] --> B
+    D[Skills: dynamic activation] --> B
+    E[Sub-Agents] <--> B
+    B -->|Research: grep/glob| F[(Local Workspace)]
+    B -->|Strategy: Formulate Plan| B
+    B -->|Execution: Plan -> Act -> Validate| F
     style B fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-## Implementation Standard
+## Key Concepts
 
-Leverage `.geminiignore` to protect sensitive test data and configuration files from being read. Utilize foundational `GEMINI.md` files to set workspace-wide testing mandates.
+- **Context Precedence** — Project instructions defined in `GEMINI.md` override global or extension rules.
+- **Skills** — Task-specific workflows dynamically activated via the `activate_skill` tool.
+- **Sub-Agents** — Specialized expert agents (e.g., `codebase_investigator`) delegated to via tools.
+- **Research → Strategy → Execution** — The core lifecycle ensuring comprehensive planning and strict validation.
 
-## Core Agentic Flows
+## Quick Links
 
-1. **Research Phase:** Tell the CLI to map the test architecture using `grep_search` and `glob`.
-2. **Strategy Phase:** The CLI formulates an execution plan (e.g., refactoring test fixtures) before touching code.
-3. **Execution Phase (Plan → Act → Validate):** Ensures that code modifications include tests, are executed natively in the terminal (e.g., `npx playwright test`), and verified against failure states before finishing.
+- [Context Management & Hierarchy](/docs/providers/gemini-context)
+- [Agent Skills](/docs/providers/gemini-skills)
+- [Available Sub-Agents](/docs/providers/gemini-subagents)
+- [Workflows & Best Practices](/docs/providers/gemini-best-practices)
 
-## GEMINI.md Template
+## Gemini Ignore
 
-```markdown
-# QA Workspace Mandates for Gemini CLI
-
-1. **Test Framework:** All new web tests must use Playwright with TypeScript.
-2. **Design Pattern:** Strictly adhere to the Page Object Model (POM). Locators must be defined using `page.getByRole()` or `page.getByTestId()` where possible.
-3. **Assertions:** Use Playwright's auto-retrying web-first assertions (e.g., `expect(locator).toBeVisible()`). Never use hard `page.waitForTimeout()` sleeps.
-4. **Execution:** Before suggesting a code change is complete, you MUST run `npx playwright test <changed_file>` via your `run_shell_command` tool and verify it passes. Never commit untested test specs.
-```
-
-## .geminiignore Template
+Create `.geminiignore` to protect sensitive test data and configuration files from being read, and improve search speed:
 
 ```text
-# Exclude test artifacts and secrets
+# Exclude heavy execution artifacts and secrets
 playwright-report/
 test-results/
 .env.e2e
 cypress/videos/
 cypress/screenshots/
+node_modules/
 ```
-
-## Sub-Agents & Tools
-
-- **`codebase_investigator`**: Delegate root-cause analysis for flaky tests.
-- **`run_shell_command`**: Gemini CLI uses bash directly for spinning up local docker containers or clearing cache before test executions.
-
-## Skills
-
-Create `.gemini/skills/sdet-playwright/SKILL.md` with `<skill_name>`, `<description>`, and `<instructions>` tags. Use the `activate_skill` tool with `skill-creator` to guide Gemini CLI in creating new QA skills.

@@ -29,7 +29,18 @@ const sidebars = {
       collapsed: false,
       items: [
         "providers/openai",
-        "providers/gemini",
+        {
+          type: "category",
+          label: "Gemini CLI",
+          collapsed: true,
+          items: [
+            "providers/gemini",
+            "providers/gemini-context",
+            "providers/gemini-skills",
+            "providers/gemini-subagents",
+            "providers/gemini-best-practices",
+          ],
+        },
         "providers/claude",
         "providers/copilot",
         {

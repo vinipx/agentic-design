@@ -54,5 +54,6 @@ cypress/screenshots/
 
 ## Next Steps
 
-- [Create a Skill](/docs/providers/gemini#skills) for SDET-specific workflows
-- Use `codebase_investigator` for flaky test root-cause analysis
+- [Create a Skill](/docs/providers/gemini-skills) for SDET-specific workflows
+- Learn about the [codebase_investigator](/docs/providers/gemini-subagents) for flaky test root-cause analysis
+- Understand the [Context Management](/docs/providers/gemini-context) hierarchy
