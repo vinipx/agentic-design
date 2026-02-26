@@ -1,0 +1,6 @@
+# Exclude test artifacts and secrets
+playwright-report/
+test-results/
+.env.e2e
+cypress/videos/
+cypress/screenshots/

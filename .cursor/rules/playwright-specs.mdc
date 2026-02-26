@@ -1,0 +1,13 @@
+---
+description: Playwright test conventions for spec files
+globs: "**/*.spec.ts,**/tests/**/*.ts"
+alwaysApply: false
+---
+
+# Playwright Spec Standards
+
+- Use `page.getByRole()` or `page.getByTestId()` for locators; avoid raw CSS selectors.
+- Use Playwright's auto-retrying assertions: `expect(locator).toBeVisible()`, `.toHaveText()`.
+- Never use `page.waitForTimeout()` — use `expect().toBeVisible()` or explicit waits.
+- Follow Arrange-Act-Assert with blank lines between sections.
+- Run `npx playwright test <file>` before considering changes complete.

@@ -1,0 +1,12 @@
+---
+description: Page Object Model conventions
+globs: "**/pages/**/*.ts,**/page-objects/**/*.ts"
+alwaysApply: false
+---
+
+# Page Object Standards
+
+- Every Page Object accepts `Page` in its constructor.
+- Locators: `readonly` class properties.
+- Methods: return `Promise<void>` or expected state; never expose raw `Page` to specs.
+- Use `@`-mention in chat: `@page-objects` when working on POM.

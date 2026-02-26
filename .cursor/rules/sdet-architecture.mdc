@@ -1,0 +1,17 @@
+---
+description: Core SDET architecture and directory structure
+alwaysApply: true
+---
+
+# SDET Framework Architecture
+
+## Directory Structure
+- `/tests`: Only spec files (`*.spec.ts`).
+- `/pages`: Page Object classes.
+- `/fixtures`: Custom Playwright fixtures.
+- `/utils`: Helper functions (data generation, API clients).
+
+## Commands
+- `npm run test`: Run full suite
+- `npx playwright test <file>`: Run single file (prefer for iteration)
+- `npx playwright test --project=chromium`: Run Chromium only

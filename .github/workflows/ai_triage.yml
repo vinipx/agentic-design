@@ -1,0 +1,33 @@
+name: E2E Tests with AI Triage
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run Playwright tests
+        run: npx playwright test
+        id: playwright_execution
+        continue-on-error: true # Allow pipeline to continue to triage step
+        
+      - name: AI Root Cause Analysis
+        if: steps.playwright_execution.outcome == 'failure'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          # Execute a custom node script that reads the test failure logs
+          # and sends them to the OpenAI API using the structured prompt defined in 4.1
+          node scripts/ai-triage.js ./test-results/failures.log
+          
+      - name: Fail build if tests failed
+        if: steps.playwright_execution.outcome == 'failure'
+        run: exit 1

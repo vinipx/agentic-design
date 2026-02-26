@@ -1,0 +1,9 @@
+# Prevent Cursor from indexing heavy execution artifacts
+node_modules/
+playwright-report/
+test-results/
+blob-report/
+*.log
+.env*
+**/cypress/videos/
+**/cypress/screenshots/
