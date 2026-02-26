@@ -30,3 +30,10 @@ A test randomly fails in CI. You need to identify root cause (state dependency, 
 2. Ask: *"This test is flaky in CI. Analyze the login flow, state dependencies, and timing. Suggest a fix."*
 3. Use `@Branch` or `@Past Chats` if the failure is in a recent change.
 4. Run the test locally multiple times to validate the fix.
+
+## Prompt Engineering for Flakiness
+
+AI agents have a tendency to "hallucinate" fixes by simply adding `waitForTimeout` or suggesting arbitrary locators. To prevent this, use strict constraints when asking for analysis.
+
+**Copy-Paste Prompt Template:**
+> "Analyze this failing test. Do not guess. Check the network payload timing, the DOM state, and the Playwright auto-wait logs. Suggest a fix utilizing explicit waits on network states or web-first assertions. If you cannot determine the flakiness from the provided context, state 'Insufficient Logs'."

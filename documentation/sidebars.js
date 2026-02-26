@@ -16,7 +16,7 @@ const sidebars = {
       type: "category",
       label: "Foundations",
       collapsed: false,
-      items: ["foundations/agents-mcp-workflows"],
+      items: ["foundations/agents-mcp-workflows", "foundations/system-instructions-pattern"],
     },
     {
       type: "category",
@@ -76,6 +76,7 @@ const sidebars = {
         "use-cases/test-migration",
         "use-cases/flaky-investigation",
         "use-cases/ci-failure-triage",
+        "use-cases/test-data-generation",
       ],
     },
     {
