@@ -37,7 +37,7 @@ const providerFeatures = [
     badge: "CURSOR",
     color: "#f4a261",
     title: "AI-First IDE",
-    description: "Zero-to-one framework scaffolding, Skills, Rules, MCP integrations, Plan Mode, parallel agents.",
+    description: "Zero-to-one framework scaffolding, Composer for multi-file edits, Skills, Rules, and MCP integrations.",
   },
   {
     badge: "GEMINI",
@@ -49,19 +49,19 @@ const providerFeatures = [
     badge: "CLAUDE",
     color: "#d97757",
     title: "Framework Refactoring",
-    description: "Deep codebase understanding. Migrate Cypress to Playwright, audit coverage across microservices.",
+    description: "Deep codebase understanding. Interactive Permission Model for safe migrations and repository audits.",
   },
   {
     badge: "COPILOT",
     color: "#2b3137",
     title: "Pair Programmer",
-    description: "Inline test completion, unit test generation, PR descriptions. Repository-level instructions.",
+    description: "Inline test completion, Copilot Chat, and Workspace Edits. Repository-level instructions.",
   },
   {
     badge: "OPENAI",
     color: "#10a37f",
     title: "CI/CD Inference",
-    description: "Stateless API for log analysis, bug triage, zero-shot test generation in pipelines.",
+    description: "Stateless API with Strict Structured Outputs for log analysis and bug triage in pipelines.",
   },
 ];
 
@@ -75,6 +75,11 @@ const corePrinciples = [
     icon: "📦",
     title: "Context Bounding",
     description: "Limit scope to relevant Page Objects, API contracts, and logs.",
+  },
+  {
+    icon: "📄",
+    title: "Native Context",
+    description: "Enforce workspace mandates using provider-specific files (.cursor/rules, GEMINI.md).",
   },
   {
     icon: "🔄",
